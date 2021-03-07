@@ -13,9 +13,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "JWT.h"
 #include "jwt/jwt.hpp"
 
-using namespace drogon;
-using namespace trantor;
-
 /**
  * Initialize and start the plugin
  */
