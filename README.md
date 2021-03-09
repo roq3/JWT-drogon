@@ -1,7 +1,7 @@
 # JWT-drogon
 JWT implementation for the Drogon framework
 
-It is made as a plugin for the [drogon](https://github.com/an-tao/drogon) framework.
+It is made as a plugin for the [Drogon](https://github.com/an-tao/drogon) framework.
 
 ## Plugin required dependencies
 
@@ -43,14 +43,12 @@ Be aware of add the plugin into the config.json. Set the "name" field to "JWT"
 ```json
 ...
 "plugins": [
-    ...
     {
         "name": "JWT",
         "dependencies": [],
         "config": {
         }
     }
-    ...
 ],
 ...
 ```
