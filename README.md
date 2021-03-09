@@ -1,6 +1,8 @@
 # JWT-drogon
 JWT implementation for the Drogon framework
 
+It is made as a plugin for the [drogon](https://github.com/an-tao/drogon) framework.
+
 ## Plugin required dependencies
 
 * cpp-jwt https://github.com/arun11299/cpp-jwt
