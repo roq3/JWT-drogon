@@ -19,17 +19,18 @@ file(WRITE test.cc "int main() { return 0; }")
 add_library(JWTTestLibrary OBJECT test.cc)
 add_executable(${PROJECT_NAME} $<TARGET_OBJECTS:JWTTestLibrary>)
 
+find_package(Drogon CONFIG REQUIRED)
+
+if(Drogon_FOUND)
+  message(STATUS "Drogon found")
+endif(Drogon_FOUND)
+
 add_subdirectory(json)
 add_subdirectory(cpp-jwt)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC nlohmann_json::nlohmann_json cpp-jwt::cpp-jwt)
+target_link_libraries(${PROJECT_NAME} PUBLIC Drogon::Drogon nlohmann_json::nlohmann_json cpp-jwt::cpp-jwt)
 
-set(BUILD_EXAMPLES FALSE)
 set(BUILD_TESTING TRUE)
-
-if(BUILD_EXAMPLES)
-  add_subdirectory(examples)
-endif(BUILD_EXAMPLES)
 
 if(BUILD_TESTING)
   find_package(GTest)
