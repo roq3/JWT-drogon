@@ -53,29 +53,33 @@ Be aware of add the plugin into the config.json. Set the "name" field to "JWT"
 ...
 ```
 
-Build the app
+Build the app as usual
 
 ## Tests
 
-Clone repos to third-party dir of the plugin
+Clone repos to root dir of the project
 
 ```bash
-$ cd ~/JWT-drogon/third-party
+$ cd ~/JWT-drogon
 $ git clone https://github.com/arun11299/cpp-jwt.git
 $ git clone https://github.com/nlohmann/json.git
 ```
 
-Run Tests
+Before run tests
 
 ```bash
 $ chmod +x test.sh
+```
+
+Run base tests
+
+```bash
 $ ./test.sh
 ```
 
-Run Unit Tests
+Run unit tests
 
 ```bash
-$ chmod +x test.sh
 $ ./test.sh -t 
 ```
 
