@@ -1,1 +1,0 @@
-link_libraries(${PROJECT_NAME})
