@@ -9,6 +9,7 @@ cmake_gen=''
 cmake_flags=''
 make_flags="$make_flags"
 
+# create build folder
 if [ ! -d "./build" ] 
 then
     mkdir build
