@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+build
+cmake-build-debug
+.idea
+html/
+latex/
+.vscode
+*.kdev4
+.cproject
+.project
+.settings/
+.vs/
+CMakeSettings.json
+install

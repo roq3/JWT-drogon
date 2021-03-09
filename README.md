@@ -33,6 +33,7 @@ Download to the plugin directory of the target drogon app, E.g. ~/drogon-app/plu
 ```bash
 $ git clone https://github.com/roq3/JWT-drogon.git
 $ cp JWT-drogon/JWT.* ~/drogon-app/plugins
+$ cp JWT-drogon/JWT*.* ~/drogon-app/plugins
 ```
 
 Be aware of add the plugin into the config.json. Set the "name" field to "JWT"
@@ -52,36 +53,31 @@ Be aware of add the plugin into the config.json. Set the "name" field to "JWT"
 ...
 ```
 
-Add the reference header and get the plugin from the app(), E.g. 
+Build the app
 
-```c++
-...
-#include "../plugins/JWT.h"
-...
+## Tests
 
-//Inside function, E.g. A controller function.
-...
-auto *jwtPtr = drogon::app().getPlugin<JWT>();
+Clone repos to third-party dir of the plugin
 
-auto jwtClass = jwtPtr->init(
-    "super-passcode"                 
-);
-
-std::map<std::string, std::string> payload;
-payload["iss"] = "some-guy";
-payload["sub"] = "something";
-payload["X-pld"] = "data1";
-
-// Encode
-auto token = jwtClass.encode(payload);
-
-// Decode
-jwt::jwt_object decodedData = jwtClass.decode(token);
-
-std:string someSub = decodedData.payload().get_claim_value<std::string>("sub"); // return sub as string (someSub will be "something")
+```bash
+$ cd ~/JWT-drogon/third-party
+$ git clone https://github.com/arun11299/cpp-jwt.git
+$ git clone https://github.com/nlohmann/json.git
 ```
 
-Build the app
+Run Tests
+
+```bash
+$ chmod +x test.sh
+$ ./test.sh
+```
+
+Run Unit Tests
+
+```bash
+$ chmod +x test.sh
+$ ./test.sh -t 
+```
 
 ## Licence
 * Feel free to use

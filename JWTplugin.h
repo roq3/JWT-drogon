@@ -1,5 +1,5 @@
 /**
- * JWT.cc
+ * JWTplugin.h
  *
  * This plugin is for JWT for the Drogon web-framework. Implementation reference from C++ projects from https://jwt.io/. 
  * Please check out https://jwt.io/. 
@@ -10,49 +10,34 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "JWT.h"
+#pragma once
+
+#include <drogon/plugins/Plugin.h>
+#include "./JWT.h"
 
 /**
- * Encode payload with HS256 algorithm
- * 
- * @param map payloadData Payload data
- * @return string Encoded token string
+ * Class JWT Plugin
  */
-std::string JWTimpl::encode(std::map<std::string, std::string> payloadData)
+class JWT : public drogon::Plugin<JWT>
 {
-    using namespace jwt::params;
+  public:
+  
+    JWT() {}
 
-    std::string passcode = this->passcode; // Secret to use for the algorithm
+    /// This method must be called by drogon to initialize and start the plugin.
+    /// It must be implemented by the user.
+    virtual void initAndStart(const Json::Value &config) override;
 
-    // Create JWT object
-    jwt::jwt_object obj{
-        algorithm("HS256"), 
-        payload(std::move(payloadData)), 
-        secret(passcode)
-    };
+    /// This method must be called by drogon to shutdown the plugin.
+    /// It must be implemented by the user.
+    virtual void shutdown() override;
 
-    auto enc_str = obj.signature(); // Get the encoded string/assertion
-
-    return enc_str;
-}
-
-/**
- * Decode payload
- * 
- * @param string payload Encoded token string
- * @return auto
- */
-jwt::jwt_object JWTimpl::decode(std::string token)
-{
-    using namespace jwt::params;
-
-    std::string passcode = this->passcode; // Secret to use for the algorithm
-
-    jwt::jwt_object dec_obj = jwt::decode(
-        token, 
-        algorithms({"HS256"}), 
-        secret(passcode)
+    /** 
+     * Create JWT simple implementation instance for further processing 
+     * 
+     * return : JWTimpl
+     */
+    JWTimpl init( 
+        const std::string &passcode  // passcode
     );
-
-    return dec_obj;
-}
+};

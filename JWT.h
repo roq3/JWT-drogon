@@ -12,7 +12,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #pragma once
 
-#include <drogon/plugins/Plugin.h>
 #include "jwt/jwt.hpp"
 
 /**
@@ -54,31 +53,4 @@ class JWTimpl
          * @return auto
          */
         jwt::jwt_object decode(std::string token);
-};
-
-/**
- * Class JWT Plugin
- */
-class JWT : public drogon::Plugin<JWT>
-{
-  public:
-  
-    JWT() {}
-
-    /// This method must be called by drogon to initialize and start the plugin.
-    /// It must be implemented by the user.
-    virtual void initAndStart(const Json::Value &config) override;
-
-    /// This method must be called by drogon to shutdown the plugin.
-    /// It must be implemented by the user.
-    virtual void shutdown() override;
-
-    /** 
-     * Create JWT simple implementation instance for further processing 
-     * 
-     * return : JWTimpl
-     */
-    JWTimpl init( 
-        const std::string &passcode  // passcode
-    );
 };
