@@ -84,4 +84,4 @@ $ ./test.sh -t
 ```
 
 ## Licence
-* Feel free to use
+ [MIT](/LICENSE)
